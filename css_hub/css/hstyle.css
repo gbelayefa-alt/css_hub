@@ -1,0 +1,156 @@
+/*
+ * Authors: Harshini Lakshman and Amanda Gbe
+ * Date: March 31st, 2026
+ * Description: stylesheet for the dashboard of CSS Web Hub.
+ */
+@import url("style.css");
+
+/* ------------- General Styling ------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container {
+    margin: auto;
+    padding: 20px;
+}
+body {
+    background: var(--light-gray);
+    color: var(--dark-gray);
+}
+
+/* ------------- Headings ------------- */
+h1 {
+    text-align: left;
+    font-size: 36px;
+    color: var(--purple);
+   
+}
+h2 {
+    font-size: 28px;
+    color: var(--purple);
+}
+h3 {
+    font-size: 20px;
+    color: var(--purple);
+    margin: 15px 0;
+}
+
+/* ------------- Dashboard Sections ------------- */
+.dashSection {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--purple);
+}
+.dashboard-hero {
+    margin-bottom: 20px;
+}
+
+.dashboard-subtitle {
+  
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+p {
+    font-size: 15px;
+    
+    margin-bottom: 10px;
+}
+
+/* ------------- Tables ------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    
+}
+
+th {
+    background-color: var(--purple);
+    color: white;
+    
+}
+
+tr:nth-child(even) {
+    background-color: #f4f6fb;
+}
+
+/* ------------- Forms ------------- */
+form {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+   
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #c5cae9;
+    background-color: #f4f6fc;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus, textarea:focus {
+    border-color: #3949ab;
+    box-shadow: 0 0 5px rgba(63,81,181,0.3);
+    outline: none;
+}
+
+form button {
+    font-family: monospace;
+    background: linear-gradient(135deg, #3949ab, #5c6bc0);
+    
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ------------- Error ------------- */
+.error {
+    color: #e53935;
+    font-weight: 500;
+    margin-bottom: 10px;
+}

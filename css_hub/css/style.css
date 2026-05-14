@@ -1,0 +1,897 @@
+/*
+ * File: style.css
+ * Authors: Daniel Yu and Amanda Gbe
+ * Date: April 2, 2026
+ * Description: Main stylesheet for CSS Web Hub. Defines global layout, navigation,
+ *              forms, tables, resource list, home page, dropdown, events and responsive behaviour.
+ *              Uses purple/blue/white branding per client request.
+ */
+
+/* ========== CSS VARIABLES ========== */
+:root {
+    --purple: #6c63ff;
+    --blue: #4d9fff;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --dark-gray: #2d3436;
+}
+
+/* ========== RESET & BASE ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--light-gray);
+    color: var(--dark-gray);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* full viewport height for footer stick */
+    position: relative;
+    background: linear-gradient(135deg,
+            #ffffff 0%,
+            #f5f3ff 100%
+            /* very light purple tint */
+        );
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image: url('/css_hub/css_hub/images/pattern.png');
+    background-repeat: repeat;
+    background-size: 60px;
+
+    opacity: 0.04;
+    /* 🔥 key for subtle look */
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* ========== TYPOGRAPHY ========== */
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--purple);
+}
+
+/* ========== NAVIGATION BAR ========== */
+.navbar {
+    background: var(--purple);
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+/* ===========LOGIN PAGE ========== */
+.auth-container {
+    display: flex;
+    min-height: 75vh;
+    gap: 40px;
+}
+
+/* LEFT PANEL */
+.auth-left {
+    flex: 1.3;
+    background: linear-gradient(135deg, #6c63ff, #4a3db0);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+}
+
+.auth-left h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* RIGHT SIDE */
+.auth-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARD */
+.auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    width: 350px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* INPUTS */
+.auth-card input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* BUTTON */
+.auth-card button {
+    width: 100%;
+    padding: 12px;
+    background: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.auth-card button:hover {
+    background: #5848d6;
+}
+
+/* ERROR */
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* ILLUSTRATION */
+.auth-illustration {
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* ========== MAIN CONTENT & FOOTER ========== */
+main {
+    flex: 1;
+    max-width: 800px;
+    margin: 32px auto;
+    padding: 0 24px;
+    width: 100%;
+}
+
+footer {
+    background: var(--purple);
+    color: var(--white);
+    text-align: center;
+    padding: 16px;
+    font-size: 14px;
+}
+
+/* ========== MERCHANDISE ORDER FORM ========== */
+.order-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 120px;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #333;
+}
+
+/* GRID */
+.merch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* CARD */
+.merch-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* IMAGE */
+.merch-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* HOVER */
+.merch-card:hover {
+    transform: translateY(-5px);
+}
+
+/* SELECTED */
+.merch-card.active {
+    border: 2px solid #6c63ff;
+    box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+}
+
+/* Form inputs and selects – native browser dropdown arrow */
+input,
+select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Extra right padding for selects to avoid text under native arrow */
+select {
+    padding: 12px 40px 12px 16px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+}
+
+/* Buttons */
+button {
+    background: var(--purple);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background: var(--blue);
+    transform: scale(1.02);
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 32px;
+}
+
+/* ========== TABLES (Orders, Admin) ========== */
+.simple-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+}
+
+.simple-table th,
+.simple-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+
+}
+
+.simple-table th {
+    background: var(--purple);
+    color: white;
+    font-weight: 500;
+}
+
+.simple-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Small buttons inside tables (admin) */
+.simple-table button {
+    padding: 6px 12px;
+    font-size: 13px;
+    background: var(--blue);
+}
+
+.simple-table button:hover {
+    background: var(--purple);
+    transform: none;
+}
+
+/* Order status colour classes */
+.status-paid {
+    color: #2ecc71;
+    font-weight: 500;
+}
+
+.status-pending {
+    color: #f39c12;
+    font-weight: 500;
+}
+
+.status-shipped {
+    color: #3498db;
+    font-weight: 500;
+}
+
+.status-select {
+    padding: 6px 12px;
+    font-size: 14px;
+    min-width: 100px;
+}
+
+/* ========== RESOURCES PAGE (list) ========== */
+.resource-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.resource-list li {
+    background: white;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.1s;
+}
+
+.resource-list li:hover {
+    transform: translateX(4px);
+}
+
+.resource-title {
+    font-weight: 500;
+}
+
+.resource-link {
+    background: var(--blue);
+    color: white;
+    text-decoration: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.resource-link:hover {
+    background: var(--purple);
+}
+
+/* ========== MESSAGES & FLASH NOTIFICATIONS ========== */
+.success-message {
+    color: #2ecc71;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.flash-success {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.flash-error {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.admin-msg.success {
+    background: #d4edda;
+    color: #155724;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.admin-msg.error {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+/* ========== HOME PAGE STYLES ========== */
+.home-hero {
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 32px;
+    background: linear-gradient(135deg, #6c63ff20, #4d9fff20);
+    border-radius: 24px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: var(--purple);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    margin-top: 16px;
+}
+
+.home-card {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.home-card h2 {
+    margin-bottom: 16px;
+    color: var(--purple);
+}
+
+.home-link {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.home-link:hover {
+    text-decoration: underline;
+}
+
+.logged-in-msg {
+    margin-top: 16px;
+    font-weight: 500;
+}
+
+/* ========== EVENT CARDS ========== */
+.event-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.event-title {
+    margin-bottom: 8px;
+    color: var(--purple);
+}
+
+.event-description {
+    margin-bottom: 12px;
+}
+
+.event-meta {
+    margin-bottom: 8px;
+}
+
+.error-message {
+    color: #e53935;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+/* ========== FORMS & SUGGESTIONS ========== */
+/* PAGE WRAPPER */
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* MAIN CARD */
+.page-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* HEADINGS */
+.page-card h1,
+.page-card h2 {
+    color: #6c63ff;
+    margin-bottom: 10px;
+}
+
+.page-card h2 {
+    margin-top: 20px;
+}
+
+/* INTRO TEXT */
+.page-intro {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+}
+
+/* TEXTAREA */
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* ========== DASHBOARD EVENTS ========== */
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.schedule-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.schedule-date {
+    min-width: 60px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--white);
+    background: var(--purple);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.schedule-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.schedule-details strong {
+    font-size: 15px;
+    color: var(--dark-gray);
+}
+
+.schedule-details span {
+    font-size: 13px;
+    color: #666;
+}
+
+/* ========== MODAL CLASS ========== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Active tab styling */
+.nav-links a.active {
+    background-color: #4a3db0 !important;
+    border-radius: 20px !important;
+    padding: 6px 14px !important;
+    margin: -6px -14px !important;
+    color: white !important;
+}
+
+/* Admin buttons */
+.approve-btn {
+    background: #2ecc71;
+}
+
+.reject-btn {
+    background: #e74c3c;
+}
+
+.delete-btn {
+    background: #95a5a6;
+}
+
+.approve-btn,
+.reject-btn,
+.delete-btn {
+    padding: 4px 8px;
+    font-size: 12px;
+    margin: 0 2px;
+}
+
+/* ========== DROPDOWN========== */
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    right: 0;
+    top: 100%;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.hamburger-menu .nav-link {
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* ========== TEAM PAGE ========== */
+.team-page {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.team-page h1 {
+    color: var(--purple);
+    margin-bottom: 10px;
+}
+
+.team-subtext {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.team-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.team-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.team-card h3 {
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+.team-card .role {
+    color: #5a4bff;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.team-card .bio {
+    color: #555;
+    font-size: 14px;
+}
+
+/* HORIZONTAL TEAM CARD */
+.team-card.horizontal {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* CIRCULAR IMAGE */
+.team-card.horizontal img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* TEXT */
+.team-info h3 {
+    margin: 0;
+    color: #333;
+}
+
+.team-info .role {
+    color: #5a4bff;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.team-info .bio {
+    font-size: 14px;
+    color: #555;
+}
+
+/* ========== CONTACT PAGE ========== */
+.contact-links {
+    display: flex;
+    gap: 50px;
+    margin-top: 10px;
+}
+
+.contact-links a {
+    padding: 10px 20px;
+    background: #6c63ff;
+    color: white;
+    border-radius: 40px;
+    text-decoration: none;
+}
+
+.contact-links a:hover {
+    background: #4d9fff;
+}
+
+/* ========== LOGO ========== */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+    line-height: 1;
+}
+
+
+/* ========== RESPONSIVE DESIGN (mobile) ========== */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .order-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    main {
+        padding: 0 16px;
+    }
+
+    .home-grid {
+        gap: 16px;
+    }
+
+    .home-hero {
+        padding: 24px;
+    }
+}
