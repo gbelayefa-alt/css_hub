@@ -25,7 +25,8 @@ This project strengthened my experience working in a collaborative development e
 3. Start Apache and MySQL services
 4. Import the provided database into phpMyAdmin
 5. Open the project in your browser:
-   http://localhost/css_hub
+   http://localhost/css_hub/css_hub/public/index.php
+6. Login with macid and password or create an account 
 
 ## Why This Project Matters
 - Demonstrates full-stack web development experience using both front-end and back-end technologies
